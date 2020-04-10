@@ -1,0 +1,13 @@
+version: '3.2'
+services:
+  libmachine:
+    image: i386/debian:buster-slim
+    command: ["/bin/bash", "/root/download-libraries.sh"]
+    volumes:
+     - type: bind
+       source: /home/ec2-user/game-lib
+       target: /root/libraries
+     - type: bind
+       source: /home/ec2-user/download-libraries.sh
+       target: /root/download-libraries.sh
+       read_only: true

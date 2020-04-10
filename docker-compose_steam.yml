@@ -1,0 +1,10 @@
+version: '3.2'
+services:
+  steam:
+    image: cm2network/steamcmd:latest
+    working_dir: /home/steam/steamcmd
+    command: ["/bin/bash", "/home/steam/steamcmd/steamcmd.sh", "+login", "anonymous", "+force_install_dir", "/home/steam/download", "+app_update", "343050", "validate", "+quit"]
+    volumes:
+     - type: bind
+       source: /home/ec2-user/game-app
+       target: /home/steam/download

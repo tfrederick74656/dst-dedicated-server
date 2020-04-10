@@ -1,0 +1,34 @@
+version: '3.2'
+services:
+  master:
+    image: busybox:musl
+    working_dir: /opt/dst/bin
+    command: ["/usr/local/lib/ld-linux.so.2", "--library-path", "/usr/local/lib", "/opt/dst/bin/dontstarve_dedicated_server_nullrenderer"]
+    volumes:
+      - type: bind
+        source: /home/ec2-user/game-app
+        target: /opt/dst
+        read_only: true
+      - type: bind
+        source: /home/ec2-user/game-data
+        target: /root/.klei
+      - type: bind
+        source: /home/ec2-user/game-lib
+        target: /usr/local/lib
+        read_only: true
+  caves:
+    image: busybox:musl
+    working_dir: /opt/dst/bin
+    command: ["/usr/local/lib/ld-linux.so.2", "--library-path", "/usr/local/lib", "/opt/dst/bin/dontstarve_dedicated_server_nullrenderer"]
+    volumes:
+      - type: bind
+        source: /home/ec2-user/game-app
+        target: /opt/dst
+        read_only: true
+      - type: bind
+        source: /home/ec2-user/game-data
+        target: /root/.klei
+      - type: bind
+        source: /home/ec2-user/game-lib
+        target: /usr/local/lib
+        read_only: true

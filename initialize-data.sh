@@ -20,3 +20,7 @@ cp templates/cluster_token.txt $data_dir/DoNotStarveTogether/$cluster_name/clust
 # Copy in default level configs
 cp templates/master_leveldataoverride.lua $data_dir/DoNotStarveTogether/$cluster_name/Master/leveldataoverride.lua
 cp templates/caves_leveldataoverride.lua $data_dir/DoNotStarveTogether/$cluster_name/Caves/leveldataoverride.lua
+
+# Copy in config files for mods
+cp templates/master_modoverrides.lua $data_dir/DoNotStarveTogether/$cluster_name/Master/modoverrides.lua
+cp templates/caves_modoverrides.lua $data_dir/DoNotStarveTogether/$cluster_name/Caves/modoverrides.lua

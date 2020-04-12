@@ -24,6 +24,10 @@ cp template-caves-server_ini.txt $data_dir/DoNotStarveTogether/$cluster_name/Cav
 # Copy in the cluster token
 cp template-cluster_token_txt.txt $data_dir/DoNotStarveTogether/$cluster_name/cluster_token.txt
 
+# Copy in default level configs
+cp template-master-leveldataoverride_lua.txt $data_dir/DoNotStarveTogether/$cluster_name/Master/leveldataoverride.lua
+cp template-caves-leveldataoverride_lua.txt $data_dir/DoNotStarveTogether/$cluster_name/Caves/leveldataoverride.lua
+
 # Copy the download libraries script
 cp download-libraries.sh $root_dir/game-lib/download-libraries.sh
 chmod +x $root_dir/game-lib/download-libraries.sh

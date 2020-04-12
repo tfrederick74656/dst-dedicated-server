@@ -1,6 +1,7 @@
 version: '3.2'
 services:
   steam:
+    container_name: dst-steam
     image: cm2network/steamcmd:root
     working_dir: /home/steam/steamcmd
     command: ["/bin/bash", "/home/steam/download-game.sh"]

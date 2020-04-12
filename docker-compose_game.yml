@@ -17,8 +17,8 @@ services:
         source: game-app
         target: /opt/dst
         read_only: true
-      - type: bind
-        source: /opt/dst-server/game-data
+      - type: volume
+        source: game-data
         target: /root/.klei
       - type: volume
         source: game-lib
@@ -43,8 +43,8 @@ services:
         source: game-app
         target: /opt/dst
         read_only: true
-      - type: bind
-        source: /opt/dst-server/game-data
+      - type: volume
+        source: game-data
         target: /root/.klei
       - type: volume
         source: game-lib
@@ -57,4 +57,5 @@ networks:
     driver: bridge
 volumes:
   game-app:
+  game-data:
   game-lib:

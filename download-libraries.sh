@@ -70,3 +70,4 @@ $copy_command $working_dir/usr/lib/i386-linux-gnu/libtasn1.so.6 $target_dir/libt
 $copy_command $working_dir/usr/lib/i386-linux-gnu/libunistring.so.2 $target_dir/libunistring.so.2
 $copy_command $working_dir/usr/lib/i386-linux-gnu/libsasl2.so.2 $target_dir/libsasl2.so.2
 $copy_command $working_dir/lib/i386-linux-gnu/libgcrypt.so.20 $target_dir/libgcrypt.so.20
+$copy_command $working_dir/lib/i386-linux-gnu/libnss_dns-2.28.so $target_dir/libnss_dns.so.2

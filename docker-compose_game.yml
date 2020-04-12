@@ -1,9 +1,17 @@
 version: '3.2'
 services:
   master:
-    image: busybox:musl
+    container_name: dst-master
+    image: i386/busybox:musl
     working_dir: /opt/dst/bin
-    command: ["/usr/local/lib/ld-linux.so.2", "--library-path", "/usr/local/lib", "/opt/dst/bin/dontstarve_dedicated_server_nullrenderer"]
+    command: ["/usr/local/lib/ld-linux.so.2", "--library-path", "/usr/local/lib", "/opt/dst/bin/dontstarve_dedicated_server_nullrenderer", "-cluster", "Cluster", "-shard", "Master"]
+    networks:
+      - dst_cluster
+    ports:
+      - target: 10999
+        published: 10999
+        protocol: udp
+        mode: host
     volumes:
       - type: bind
         source: /home/ec2-user/game-app
@@ -17,9 +25,17 @@ services:
         target: /usr/local/lib
         read_only: true
   caves:
-    image: busybox:musl
+    container_name: dst-caves
+    image: i386/busybox:musl
     working_dir: /opt/dst/bin
-    command: ["/usr/local/lib/ld-linux.so.2", "--library-path", "/usr/local/lib", "/opt/dst/bin/dontstarve_dedicated_server_nullrenderer"]
+    command: ["/usr/local/lib/ld-linux.so.2", "--library-path", "/usr/local/lib", "/opt/dst/bin/dontstarve_dedicated_server_nullrenderer", "-cluster", "Cluster", "-shard", "Caves"]
+    networks:
+      - dst_cluster
+    ports:
+      - target: 11000
+        published: 11000
+        protocol: udp
+        mode: host
     volumes:
       - type: bind
         source: /home/ec2-user/game-app
@@ -32,3 +48,6 @@ services:
         source: /home/ec2-user/game-lib
         target: /usr/local/lib
         read_only: true
+networks:
+  dst_cluster:
+    driver: bridge

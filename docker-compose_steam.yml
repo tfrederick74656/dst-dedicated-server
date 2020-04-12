@@ -1,10 +1,16 @@
 version: '3.2'
 services:
   steam:
-    image: cm2network/steamcmd:latest
+    image: cm2network/steamcmd:root
     working_dir: /home/steam/steamcmd
-    command: ["/bin/bash", "/home/steam/steamcmd/steamcmd.sh", "+login", "anonymous", "+force_install_dir", "/home/steam/download", "+app_update", "343050", "validate", "+quit"]
+    command: ["/bin/bash", "/home/steam/download-game.sh"]
     volumes:
-     - type: bind
-       source: /opt/dst-server/game-app
-       target: /home/steam/download
+      - type: volume
+        source: game-app
+        target: /home/steam/download
+      - type: bind
+        source: ./download-game.sh
+        target: /home/steam/download-game.sh
+        read_only: true
+volumes:
+  game-app:

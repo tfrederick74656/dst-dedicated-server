@@ -13,17 +13,19 @@ services:
         protocol: udp
         mode: host
     volumes:
-      - type: bind
-        source: /opt/dst-server/game-app
+      - type: volume
+        source: game-app
         target: /opt/dst
         read_only: true
       - type: bind
         source: /opt/dst-server/game-data
         target: /root/.klei
-      - type: bind
-        source: /opt/dst-server/game-lib
+      - type: volume
+        source: game-lib
         target: /usr/local/lib
         read_only: true
+        volume:
+          nocopy: true
   caves:
     container_name: dst-caves
     image: i386/busybox:musl
@@ -37,17 +39,22 @@ services:
         protocol: udp
         mode: host
     volumes:
-      - type: bind
-        source: /opt/dst-server/game-app
+      - type: volume
+        source: game-app
         target: /opt/dst
         read_only: true
       - type: bind
         source: /opt/dst-server/game-data
         target: /root/.klei
-      - type: bind
-        source: /opt/dst-server/game-lib
+      - type: volume
+        source: game-lib
         target: /usr/local/lib
         read_only: true
+        volume:
+          nocopy: true
 networks:
   dst_cluster:
     driver: bridge
+volumes:
+  game-app:
+  game-lib:

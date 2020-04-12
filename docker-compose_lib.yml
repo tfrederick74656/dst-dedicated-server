@@ -1,9 +1,16 @@
 version: '3.2'
 services:
-  libmachine:
+  lib:
+    container_name: dst-lib
     image: i386/debian:buster-slim
     command: ["/bin/bash", "/root/libraries/download-libraries.sh"]
     volumes:
-     - type: bind
-       source: /opt/dst-server/game-lib
+     - type: volume
+       source: game-lib
        target: /root/libraries
+     - type: bind
+       source: ./download-libraries.sh
+       target: /root/libraries/download-libraries.sh
+       read_only: true
+volumes:
+  game-lib:

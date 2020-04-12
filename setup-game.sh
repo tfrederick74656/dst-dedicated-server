@@ -1,12 +1,30 @@
-root_dir=/home/ec2-user
-mkdir $root_dir/game-app
-mkdir $root_dir/game-data
-mkdir $root_dir/game-lib
-chmod 777 $root_dir/game-app
-
-# Set directories and cluster name
+# Define directory names
+root_dir=/opt/dst-server
+app_dir=$root_dir/game-app
 data_dir=$root_dir/game-data
+lib_dir=$root_dir/game-lib
+setup_dir=$root_dir/game-setup
+
+# Create root directory
+sudo mkdir $root_dir
+sudo chown ec2-user:ec2-user $root_dir
+
+# Create subdirectories
+mkdir $app_dir
+mkdir $data_dir
+mkdir $lib_dir
+mkdir $setup_dir
+chmod 777 $app_dir
+
+# Copy scripts and config files to the setup directory
+cp * $setup_dir
+cd $setup_dir
+
+# Define cluster name and cluster token
 cluster_name="Cluster"
+echo -n "Cluster token: "
+read cluster_token
+echo $cluster_token > template-cluster_token_txt.txt
 
 # Make game data directory structure
 mkdir -p $data_dir/DoNotStarveTogether/$cluster_name/Master
@@ -29,8 +47,8 @@ cp template-master-leveldataoverride_lua.txt $data_dir/DoNotStarveTogether/$clus
 cp template-caves-leveldataoverride_lua.txt $data_dir/DoNotStarveTogether/$cluster_name/Caves/leveldataoverride.lua
 
 # Copy the download libraries script
-cp download-libraries.sh $root_dir/game-lib/download-libraries.sh
-chmod +x $root_dir/game-lib/download-libraries.sh
+cp download-libraries.sh $lib_dir/download-libraries.sh
+chmod +x $lib_dir/download-libraries.sh
 
 # Start the game servers
 #sudo docker-compose -f docker-compose_lib.yml up

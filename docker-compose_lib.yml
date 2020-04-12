@@ -5,5 +5,5 @@ services:
     command: ["/bin/bash", "/root/libraries/download-libraries.sh"]
     volumes:
      - type: bind
-       source: /home/ec2-user/game-lib
+       source: /opt/dst-server/game-lib
        target: /root/libraries

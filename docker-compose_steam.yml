@@ -6,5 +6,5 @@ services:
     command: ["/bin/bash", "/home/steam/steamcmd/steamcmd.sh", "+login", "anonymous", "+force_install_dir", "/home/steam/download", "+app_update", "343050", "validate", "+quit"]
     volumes:
      - type: bind
-       source: /home/ec2-user/game-app
+       source: /opt/dst-server/game-app
        target: /home/steam/download

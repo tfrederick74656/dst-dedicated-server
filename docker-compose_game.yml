@@ -14,14 +14,14 @@ services:
         mode: host
     volumes:
       - type: bind
-        source: /home/ec2-user/game-app
+        source: /opt/dst-server/game-app
         target: /opt/dst
         read_only: true
       - type: bind
-        source: /home/ec2-user/game-data
+        source: /opt/dst-server/game-data
         target: /root/.klei
       - type: bind
-        source: /home/ec2-user/game-lib
+        source: /opt/dst-server/game-lib
         target: /usr/local/lib
         read_only: true
   caves:
@@ -38,14 +38,14 @@ services:
         mode: host
     volumes:
       - type: bind
-        source: /home/ec2-user/game-app
+        source: /opt/dst-server/game-app
         target: /opt/dst
         read_only: true
       - type: bind
-        source: /home/ec2-user/game-data
+        source: /opt/dst-server/game-data
         target: /root/.klei
       - type: bind
-        source: /home/ec2-user/game-lib
+        source: /opt/dst-server/game-lib
         target: /usr/local/lib
         read_only: true
 networks:

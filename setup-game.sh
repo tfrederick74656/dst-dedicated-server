@@ -10,13 +10,13 @@ sudo chown ec2-user:ec2-user $root_dir
 mkdir $setup_dir
 
 # Copy scripts and config files to the setup directory
-cp * $setup_dir
+cp -R * $setup_dir
 cd $setup_dir
 
 # Define cluster name and cluster token
 echo -n "Cluster token: "
 read cluster_token
-echo $cluster_token > template-cluster_token_txt.txt
+echo $cluster_token > templates/cluster_token.txt
 
 # Start the game servers
 #sudo docker-compose -f docker-compose_lib.yml up

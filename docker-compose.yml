@@ -1,7 +1,6 @@
 version: '3.2'
 services:
   master:
-    container_name: dst-master
     image: i386/busybox:musl
     working_dir: /opt/dst/bin
     command: ["/usr/local/lib/ld-linux.so.2", "--library-path", "/usr/local/lib", "/opt/dst/bin/dontstarve_dedicated_server_nullrenderer", "-cluster", "Cluster", "-shard", "Master"]
@@ -27,7 +26,6 @@ services:
         volume:
           nocopy: true
   caves:
-    container_name: dst-caves
     image: i386/busybox:musl
     working_dir: /opt/dst/bin
     command: ["/usr/local/lib/ld-linux.so.2", "--library-path", "/usr/local/lib", "/opt/dst/bin/dontstarve_dedicated_server_nullrenderer", "-cluster", "Cluster", "-shard", "Caves"]
@@ -53,7 +51,6 @@ services:
         volume:
           nocopy: true
   lib:
-    container_name: dst-lib
     image: i386/debian:buster-slim
     command: ["/bin/bash", "/root/libraries/container-functions.sh", "download_libraries"]
     volumes:
@@ -65,7 +62,6 @@ services:
        target: /root/libraries/container-functions.sh
        read_only: true
   steam:
-    container_name: dst-steam
     image: cm2network/steamcmd:root
     working_dir: /home/steam/steamcmd
     command: ["/bin/bash", "/home/steam/container-functions.sh", "download_game"]
@@ -78,7 +74,6 @@ services:
         target: /home/steam/container-functions.sh
         read_only: true
   setup:
-    container_name: dst-setup
     image: i386/busybox:musl
     working_dir: /root/game-setup
     command: ["/bin/ash", "/root/game-setup/container-functions.sh", "initialize_data"]

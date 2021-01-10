@@ -87,8 +87,8 @@ services:
         source: game-data
         target: /root/game-data
       - type: bind
-        source: .
-        target: /root/game-setup
+        source: ./initialize-data.sh
+        target: /root/game-setup/initialize-data.sh
         read_only: true
 networks:
   dst_cluster:

@@ -65,7 +65,7 @@ services:
        target: /root/libraries/download-libraries.sh
        read_only: true
   steam:
-    container_name: dst-setup
+    container_name: dst-steam
     image: cm2network/steamcmd:root
     working_dir: /home/steam/steamcmd
     command: ["/bin/bash", "/home/steam/download-game.sh"]
@@ -78,7 +78,7 @@ services:
         target: /home/steam/download-game.sh
         read_only: true
   setup:
-    container_name: dst-steam
+    container_name: dst-setup
     image: i386/busybox:musl
     working_dir: /root/game-setup
     command: ["/bin/ash", "/root/game-setup/initialize-data.sh"]

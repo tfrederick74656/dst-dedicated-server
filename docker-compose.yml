@@ -55,40 +55,40 @@ services:
   lib:
     container_name: dst-lib
     image: i386/debian:buster-slim
-    command: ["/bin/bash", "/root/libraries/download-libraries.sh"]
+    command: ["/bin/bash", "/root/libraries/container-functions.sh", "download_libraries"]
     volumes:
      - type: volume
        source: game-lib
        target: /root/libraries
      - type: bind
-       source: ./download-libraries.sh
-       target: /root/libraries/download-libraries.sh
+       source: ./container-functions.sh
+       target: /root/libraries/container-functions.sh
        read_only: true
   steam:
     container_name: dst-steam
     image: cm2network/steamcmd:root
     working_dir: /home/steam/steamcmd
-    command: ["/bin/bash", "/home/steam/download-game.sh"]
+    command: ["/bin/bash", "/home/steam/container-functions.sh", "download_game"]
     volumes:
       - type: volume
         source: game-app
         target: /home/steam/download
       - type: bind
-        source: ./download-game.sh
-        target: /home/steam/download-game.sh
+        source: ./container-functions.sh
+        target: /home/steam/container-functions.sh
         read_only: true
   setup:
     container_name: dst-setup
     image: i386/busybox:musl
     working_dir: /root/game-setup
-    command: ["/bin/ash", "/root/game-setup/initialize-data.sh"]
+    command: ["/bin/ash", "/root/game-setup/container-functions.sh", "initialize_data"]
     volumes:
       - type: volume
         source: game-data
         target: /root/game-data
       - type: bind
-        source: ./initialize-data.sh
-        target: /root/game-setup/initialize-data.sh
+        source: ./container-functions.sh
+        target: /root/game-setup/container-functions.sh
         read_only: true
 networks:
   dst_cluster:
